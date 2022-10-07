@@ -1,0 +1,27 @@
+---
+title: "US election data"
+author: "Muntasir Adnan"
+date: "2022-10-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## load the usap dataset
+```{r}
+usap <- read.csv("usap.csv")
+```
+check the dataset
+```{r}
+View(usap)
+```
+scatter plot vote share and growth rate
+```{r}
+plot(usap$vs, usap$gr, main="vs and gr",
+   xlab="vote share ", ylab="growth rate", pch=19)
+abline(lm(usap$gr~usap$vs), col="red") # regression line (y~x)
+lines(lowess(usap$vs,usap$gr), col="blue") # lowess line (x,y)
+```
+scatter plot vote share and growth rate

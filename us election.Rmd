@@ -19,9 +19,39 @@ View(usap)
 ```
 scatter plot vote share and growth rate
 ```{r}
-plot(usap$vs, usap$gr, main="vs and gr",
-   xlab="vote share ", ylab="growth rate", pch=19)
-abline(lm(usap$gr~usap$vs), col="red") # regression line (y~x)
-lines(lowess(usap$vs,usap$gr), col="blue") # lowess line (x,y)
+plot(usap$gr, usap$vs, main="gr and vs",
+   xlab="growth rate ", ylab="vote share", pch=19)
+abline(lm(usap$vs~usap$gr), col="red") # regression line (y~x)
+lines(lowess(usap$gr,usap$vs), col="blue") # lowess line (x,y)
 ```
-scatter plot vote share and growth rate
+scatter plot vote share and inflation rate
+```{r}
+plot(usap$ir, usap$vs, main="ir and vs",
+   xlab="inflation rate", ylab="vote share", pch=19)
+abline(lm(usap$vs~usap$ir), col="red") # regression line (y~x)
+lines(lowess(usap$ir,usap$vs), col="blue") # lowess line (x,y)
+```
+scatter plot vote share and good news quarter
+```{r}
+plot(usap$gn, usap$vs, main="gn and vs",
+   xlab="good news quarter", ylab="vote share", pch=19)
+abline(lm(usap$vs~usap$gn), col="red") # regression line (y~x)
+lines(lowess(usap$gn,usap$vs), col="blue") # lowess line (x,y)
+```
+scatter plot vote share and duration value
+```{r}
+plot(usap$dv, usap$vs, main="gr and vs",
+   xlab="duration value", ylab="vote share", pch=19)
+abline(lm(usap$vs~usap$dv), col="red") # regression line (y~x)
+lines(lowess(usap$dv,usap$vs), col="blue") # lowess line (x,y)
+```
+regression model A
+```{r}
+modelA <- lm(usap$vs ~ usap$gr + usap$ir, data = usap)
+summary(modelA)
+modelB <- lm(usap$vs ~ usap$gr + usap$ir + usap$gn + usap$dv, data = usap)
+summary(modelB)
+modelC <- lm(usap$vs ~ usap$gr + usap$ir + usap$gn + usap$dv + usap$pr + usap$pwh + usap$pr*usap$pwh, data = usap)
+summary(modelC)
+```
+
